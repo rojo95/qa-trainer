@@ -1,4 +1,3 @@
 transformers==4.40.0
 datasets==2.18.0
 tensorflowjs==4.21.0
-protobuf==3.20.*
