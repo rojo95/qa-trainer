@@ -13,8 +13,13 @@ jobs:
 
       - name: Run training and export model
         run: |
-          docker create --name qa-container rojo95/qa-trainer:latest
+          # Crear y ejecutar contenedor para que se entrene y exporte el modelo
+          docker run --name qa-container rojo95/qa-trainer:latest
+          
+          # Copiar la carpeta generada desde el contenedor
           docker cp qa-container:/app/model_tfjs ./model_tfjs
+          
+          # Borrar contenedor
           docker rm qa-container
 
       - name: Upload exported model as artifact
