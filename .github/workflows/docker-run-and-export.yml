@@ -9,11 +9,11 @@ jobs:
 
     steps:
       - name: Pull image from Docker Hub
-        run: docker pull johanroman/qa-trainer:latest
+        run: docker pull rojo95/qa-trainer:latest
 
       - name: Run training and export model
         run: |
-          docker create --name qa-container johanroman/qa-trainer:latest
+          docker create --name qa-container rojo95/qa-trainer:latest
           docker cp qa-container:/app/model ./model
           docker rm qa-container
 
