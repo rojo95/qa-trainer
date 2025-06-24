@@ -1,0 +1,10 @@
+services:
+    qa-trainer:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: qa-trainer
+        volumes:
+            - ./app:/app
+        working_dir: /app
+        command: python train.py
