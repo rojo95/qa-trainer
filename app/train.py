@@ -46,7 +46,7 @@ def train_and_export_model():
     model.fit(train_dataset, epochs=3)
 
     # 5. Exportar modelo a TensorFlow.js
-    export_dir = "exported_model"
+    export_dir = "model_tf"
     os.makedirs(export_dir, exist_ok=True)
 
     tf.saved_model.save(model, export_dir)

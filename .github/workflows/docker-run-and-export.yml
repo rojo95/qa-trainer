@@ -1,7 +1,7 @@
 name: Run container and export model
 
 on:
-  workflow_dispatch:  # lo ejecutas manualmente desde GitHub
+  workflow_dispatch:  # se ejecuta manualmente desde GitHub
 
 jobs:
   run-container:
@@ -14,11 +14,11 @@ jobs:
       - name: Run training and export model
         run: |
           docker create --name qa-container rojo95/qa-trainer:latest
-          docker cp qa-container:/app/model ./model
+          docker cp qa-container:/app/model_tfjs ./model_tfjs
           docker rm qa-container
 
       - name: Upload exported model as artifact
         uses: actions/upload-artifact@v4
         with:
           name: exported-model
-          path: ./model
+          path: ./model_tfjs
