@@ -1,0 +1,24 @@
+name: Run container and export model
+
+on:
+  workflow_dispatch:  # lo ejecutas manualmente desde GitHub
+
+jobs:
+  run-container:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Pull image from Docker Hub
+        run: docker pull johanroman/qa-trainer:latest
+
+      - name: Run training and export model
+        run: |
+          docker create --name qa-container johanroman/qa-trainer:latest
+          docker cp qa-container:/app/model ./model
+          docker rm qa-container
+
+      - name: Upload exported model as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: exported-model
+          path: ./model
